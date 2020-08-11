@@ -461,7 +461,8 @@ def validate_latex_theme_options(app: Sphinx, config: Config) -> None:
 def install_pakcages_for_ja(app: Sphinx) -> None:
     """Install packages for Japanese."""
     if app.config.language == 'ja':
-        app.add_latex_package('pxjahyper', after_hyperref=True)
+        if app.config.latex_engine != 'lualatex':
+            app.add_latex_package('pxjahyper', after_hyperref=True)
 
 
 def default_latex_engine(config: Config) -> str:
